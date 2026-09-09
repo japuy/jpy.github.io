@@ -6,6 +6,18 @@
   "engines": {
     "node": "24.x"
   },
+  "allowScripts": {
+    "esbuild": true,
+    "@esbuild/*": true,
+    "vite": true,
+    "@vitejs/plugin-react": true,
+    "tailwindcss": true,
+    "postcss": true,
+    "autoprefixer": true,
+    "core-js-pure": true,
+    "esbuild-*": true,
+    "*": true
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && node esbuild-fix.js && node build-wrapper.cjs",
@@ -51,11 +63,5 @@
     "@esbuild/android-arm": "0.24.0",
     "@esbuild/android-arm64": "0.24.0",
     "@esbuild/android-x64": "0.24.0"
-  },
-  "config": {
-    "allowScripts": {
-      "esbuild": true,
-      "@esbuild/*": true
-    }
   }
 }
