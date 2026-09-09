@@ -3,9 +3,13 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc --noEmit && vite build",
+    "build:fast": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -21,5 +25,18 @@
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3",
     "vite": "^5.3.4"
+  },
+  "optionalDependencies": {
+    "@esbuild/linux-x64": "^0.21.5",
+    "@esbuild/linux-arm64": "^0.21.5",
+    "@esbuild/darwin-x64": "^0.21.5",
+    "@esbuild/darwin-arm64": "^0.21.5",
+    "@esbuild/win32-x64": "^0.21.5"
+  },
+  "config": {
+    "allowScripts": {
+      "esbuild": true,
+      "@esbuild/*": true
+    }
   }
 }

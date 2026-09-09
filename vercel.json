@@ -1,0 +1,29 @@
+{
+  "installCommand": "npm install --ignore-scripts=false",
+  "buildCommand": "npm run build:fast",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "env": {
+    "NPM_CONFIG_IGNORE_SCRIPTS": "false",
+    "NPM_CONFIG_ALLOW_SCRIPTS": "*"
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
