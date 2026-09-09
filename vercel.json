@@ -1,14 +1,10 @@
 {
-  "installCommand": "npm install --ignore-scripts=false",
-  "buildCommand": "npm run build:fast",
+  "installCommand": "NPM_CONFIG_ALLOW_SCRIPTS=* NPM_CONFIG_IGNORE_SCRIPTS=false npm install --ignore-scripts=false --foreground-scripts",
+  "buildCommand": "NPM_CONFIG_ALLOW_SCRIPTS=* node node_modules/esbuild/install.js 2>/dev/null; npm run build:fast",
   "outputDirectory": "dist",
   "framework": "vite",
   "cleanUrls": true,
   "trailingSlash": false,
-  "env": {
-    "NPM_CONFIG_IGNORE_SCRIPTS": "false",
-    "NPM_CONFIG_ALLOW_SCRIPTS": "*"
-  },
   "rewrites": [
     {
       "source": "/(.*)",

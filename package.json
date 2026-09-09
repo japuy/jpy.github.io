@@ -4,13 +4,15 @@
   "version": "1.0.0",
   "type": "module",
   "engines": {
-    "node": ">=18.0.0"
+    "node": "20.x"
   },
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "build:fast": "vite build",
-    "preview": "vite preview"
+    "build:fast": "node esbuild-fix.js 2>/dev/null; vite build",
+    "preview": "vite preview",
+    "postinstall": "node esbuild-fix.js 2>/dev/null || node node_modules/esbuild/install.js 2>/dev/null || true",
+    "vercel-build": "node esbuild-fix.js 2>/dev/null || true; vite build"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -21,22 +23,39 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
+    "esbuild": "^0.21.5",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3",
     "vite": "^5.3.4"
   },
   "optionalDependencies": {
-    "@esbuild/linux-x64": "^0.21.5",
-    "@esbuild/linux-arm64": "^0.21.5",
-    "@esbuild/darwin-x64": "^0.21.5",
-    "@esbuild/darwin-arm64": "^0.21.5",
-    "@esbuild/win32-x64": "^0.21.5"
+    "@esbuild/linux-x64": "0.21.5",
+    "@esbuild/linux-arm64": "0.21.5",
+    "@esbuild/linux-ia32": "0.21.5",
+    "@esbuild/linux-mips64el": "0.21.5",
+    "@esbuild/linux-ppc64": "0.21.5",
+    "@esbuild/linux-riscv64": "0.21.5",
+    "@esbuild/linux-s390x": "0.21.5",
+    "@esbuild/darwin-x64": "0.21.5",
+    "@esbuild/darwin-arm64": "0.21.5",
+    "@esbuild/freebsd-x64": "0.21.5",
+    "@esbuild/freebsd-arm64": "0.21.5",
+    "@esbuild/netbsd-x64": "0.21.5",
+    "@esbuild/openbsd-x64": "0.21.5",
+    "@esbuild/sunos-x64": "0.21.5",
+    "@esbuild/win32-x64": "0.21.5",
+    "@esbuild/win32-ia32": "0.21.5",
+    "@esbuild/win32-arm64": "0.21.5",
+    "@esbuild/android-arm": "0.21.5",
+    "@esbuild/android-arm64": "0.21.5",
+    "@esbuild/android-x64": "0.21.5"
   },
   "config": {
     "allowScripts": {
       "esbuild": true,
       "@esbuild/*": true
     }
-  }
+  },
+  "_comment": "esbuild pinned to 0.21.5 across all binaries to ensure correct optional platform resolution"
 }
